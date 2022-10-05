@@ -1,27 +1,39 @@
 import React, { useEffect, useState } from 'react';
-import "../styles/accordion.css";
-import PropTypes from 'prop-types';
+import "../styles/FAQ.css";
+import FaqService from '../modules/faq/faqService';
 
 function FAQ(props) {    
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
+    const [questions,setQuestions] = useState([]);
+
     const handleSearchChange = e => {
         setSearchTerm(e.target.value);
     };
 
+    const fetchFAQs = async()=>{
+        const response = await FaqService.listAll(null,null,null,null); 
+        setQuestions(response.rows);
+    }
+
     useEffect(() => {
-        const results = props.data.filter(item=>
-        item.question.toLowerCase().includes(searchTerm)
+        fetchFAQs();
+
+        const results = questions.filter(item=>
+            item.question.toLowerCase().includes(searchTerm)
         );
         setSearchResults(results);
-    }, [searchTerm,props.data]);
+    }, [searchTerm,questions]);
 
     return (    
         <div className='container'>
         <h2 className="heading">How can we help you?</h2>
         <Searchbar onSearchChange={handleSearchChange}/> 
         <section className='faq'>
-            {searchResults.map(item => <Question question={item.question} answer={item.answer} />)}
+            {
+                searchResults.map((item) => 
+                    <Question key={item.id} question={item.question} title={item.content.title} content={item.content.content} />
+                )}
         </section>      
         </div>
     )
@@ -58,13 +70,12 @@ const Question = props => {
             </svg>
         </button>     
         </div>
-            <div className={isActive? 'answer active' : 'answer'}>{props.answer}</div>
+            <div className={isActive? 'answer active' : 'answer'}>
+                <h3>{props.title}</h3>
+                {props.content}
+            </div>
         </div>
     )
-}
-
-FAQ.propTypes={
-    data:PropTypes.array
 }
 
 export default FAQ;

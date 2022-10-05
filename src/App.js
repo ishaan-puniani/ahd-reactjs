@@ -1,9 +1,9 @@
-import FAQ from "./components/accordion";
-import questions from "./seeds/questions";
+import ContextHelp from "./components/ContextHelp";
+//import FAQ from "./components/FAQ";
 
 const App = (props) => {
   return (
-    <FAQ data={questions}/>
+    <ContextHelp />
   );
 }
 
