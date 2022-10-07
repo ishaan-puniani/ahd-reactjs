@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import ContextHelpService from '../modules/contextHelp/contextHelpService';
-import "../styles/ContextHelp.css"
+import { MemoryRouter, Route, Routes, Link } from "react-router-dom";
+import "../styles/ContextHelp.css";
 
 const ContextHelp = (props)=>{
     const [rows,setRows] = useState([]);
-    const [activeTab,setActiveTab] = useState(0);
 
     const fetchContextHelp = async()=>{
         const res = await ContextHelpService.list(null,null,null,null);
@@ -15,58 +15,71 @@ const ContextHelp = (props)=>{
         fetchContextHelp();
     },[rows]);
 
-    const handleTabClick = (i)=>{
-        setActiveTab(i);
-    }
-
     return (
         <>
-        <div class="tabs">
-            {rows.map((item,idx)=>(
-                <div onClick={()=>{handleTabClick(idx);}} class="tab">
+        <MemoryRouter>
+            <Tabs rows={rows}/>
+            <Routes>
+                {rows.map((item)=>(
+                    <Route key={item.id} path={`/${item.id}`} element={<Content {...props} row={item}/>} />
+                ))}
+            </Routes>
+        </MemoryRouter>
+        </>
+    );
+}
+
+const Tabs = ({rows})=>{
+    return (
+        <nav class="tabs">
+            {rows.map((item)=>(
+                <Link to={`/${item.id}`} key={item.id} class="tab">
                     {item.name}
-                </div>
+                </Link>
             ))}
-        </div>
+        </nav>
+    );
+}
+
+
+const Content = ({row})=>{
+    return (
         <div class="tab-content">
             {
-                rows[activeTab]?
+                row &&
                 <>
-                    <h3>{rows[activeTab].topic}</h3>
-                    <h4>{rows[activeTab].slug}</h4>
-                    <p>{rows[activeTab].questions}</p>
+                    <h3>{row.topic}</h3>
+                    <h4>{row.slug}</h4>
+                    <p>{row.questions}</p>
                     
                     <div class="images">
-                        {rows[activeTab].images.map((img)=>
-                            <img src={`${img.downloadUrl}`} title={img.name} alt={img.name}/>
+                        {row.images.map((img)=>
+                            <img src={`${img.downloadUrl}`} title={img.name} alt={img.name} key={img.id}/>
                         )}
                     </div> 
 
                     {
-                        rows[activeTab].content?
+                        row.content &&
                         <div class="content">
                             <h3>Content</h3>
-                            <h4>{rows[activeTab].content.title}</h4>
+                            <h4>{row.content.title}</h4>
                             <div class="images">
-                                {rows[activeTab].content.image.map((img)=>
-                                    <img src={`${img.downloadUrl}`} title={img.name} alt={img.name}/>
+                                {row.content.image.map((img)=>
+                                    <img src={`${img.downloadUrl}`} title={img.name} alt={img.name} key={img.id}/>
                                 )}
                             </div>
                             <div class="videos">
-                                {rows[activeTab].content.video.map((vid)=>(
-                                    <video class="video" autoPlay loop>
+                                {row.content.video.map((vid)=>(
+                                    <video class="video" autoPlay loop key={vid.id}>
                                         <source src={vid.publicUrl} />
                                     </video>)
                                 )}
                             </div>
                         </div>
-                        :<></>
                     }
                 </>
-                :<></>
             }
         </div>
-        </>
     );
 }
 

@@ -6,7 +6,13 @@
 }
 .tab{
     cursor: pointer;
-    padding: 10px;
+    padding: 10px 30px;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+.tab:hover{
+    background: rgba(0,0,0,0.1);
+    transition: all 0.3s;
 }
 .images>img{
     width: 100px;

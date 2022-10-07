@@ -1,5 +1,5 @@
 import ContextHelp from "./components/ContextHelp";
-//import FAQ from "./components/FAQ";
+import './styles/App.css';
 
 const App = (props) => {
   return (
