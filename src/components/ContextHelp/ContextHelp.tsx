@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import ContextHelpService from '../../services/contextHelp/contextHelpService';
 import Content from './Content';
+import { ContextHelpStyle } from './ContextHelp.styled';
 import Tabs from './Tabs';
 
 const ContextHelp = (props: any) => {
@@ -17,7 +18,7 @@ const ContextHelp = (props: any) => {
     }, [rows]);
 
     return (
-        <>
+        <ContextHelpStyle>
             <MemoryRouter>
                 <Tabs rows={rows} />
                 <Routes>
@@ -26,7 +27,7 @@ const ContextHelp = (props: any) => {
                     ))}
                 </Routes>
             </MemoryRouter>
-        </>
+        </ContextHelpStyle>
     );
 };
 

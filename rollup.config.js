@@ -4,6 +4,7 @@ import cleaner from 'rollup-plugin-cleaner';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import packageJson from './package.json';
+import json from '@rollup/plugin-json';
 
 export default {
     input: 'src/index.ts',
@@ -26,6 +27,7 @@ export default {
         peerDepsExternal(),
         resolve(),
         commonjs(),
+        json(),
         typescript({
             exclude: ['**/*.stories.tsx', '**/*.test.tsx'],
         }),
