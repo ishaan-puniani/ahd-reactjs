@@ -15,6 +15,11 @@
         "release": "npm run build && npm publish",
         "build": "rollup -c"
     },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm --no-git-tag-version version patch && git add ."
+        }
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/ishaan-puniani/ahd-reactjs.git"
