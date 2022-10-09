@@ -19,7 +19,7 @@ interface IContextHelpDialogProps {
 const ContextHelpDialog: React.FC<IContextHelpDialogProps> = (props: IContextHelpDialogProps) => {
     const [visible, setVisible] = useState(props.visible);
     const [loading, setLoading] = useState(false);
-    const [content, setContent] = useState({});
+    const [content, setContent] = useState<any>({});
     let { ahdConfig } = useAhdConfig();
     ahdConfig = props.config || ahdConfig;
 
