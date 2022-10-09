@@ -4,6 +4,7 @@ export { default as FAQ } from './components/FAQ/FAQ';
 export { default as ContextHelp } from './components/ContextHelp/ContextHelp';
 export { default as ContextTour } from './components/ContextTour/ContextTour';
 export { default as ContextHint } from './components/ContextHint/ContextHint';
+export { default as ContextHelpDialog } from './components/ContextHelpDialog/ContextHelpDialog';
 export { default as Container } from './components/atoms/Container/Container';
 export { default as Title } from './components/atoms/Title/Title';
 export { default as Icon } from './components/atoms/Icon/Icon';
