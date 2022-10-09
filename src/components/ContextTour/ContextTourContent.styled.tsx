@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ContextTourStyle = styled.div`
+export const ContextTourContentStyle = styled.div`
     .images > img {
         width: 100px;
         height: 100px;
@@ -10,6 +10,5 @@ export const ContextTourStyle = styled.div`
     }
     .video {
         width: 100%;
-        height: 50vh;
     }
 `;

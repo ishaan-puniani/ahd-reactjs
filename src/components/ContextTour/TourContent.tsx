@@ -1,26 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { MemoryRouter, Route, Routes, Link } from 'react-router-dom';
+import React from 'react';
+import { ContextTourContentStyle } from './ContextTourContent.styled';
 
-export interface IContentProps {
+export interface ITourContentProps {
     name: string;
-    slug: string;
-    selector: string;
+
     content: any;
-    step: number;
 }
 
-const Content: React.FC<IContentProps> = (props: IContentProps) => {
+const TourContent: React.FC<ITourContentProps> = (props: ITourContentProps) => {
     return (
-        <div className="tab-content">
+        <ContextTourContentStyle>
             {props && (
                 <>
-                    <h3>{`${props.step + 1}.) ${props.name}`}</h3>
-                    <h4>{props.slug}</h4>
-                    <p>{props.selector}</p>
+                    <h3>{props.name}</h3>
 
                     {props.content && (
                         <div className="content">
-                            <h3>Content</h3>
                             <h4>{props.content.title}</h4>
                             <div className="images">
                                 {props.content.image.map((img: any) => (
@@ -34,12 +29,13 @@ const Content: React.FC<IContentProps> = (props: IContentProps) => {
                                     </video>
                                 ))}
                             </div>
+                            <p>{props.content.content}</p>
                         </div>
                     )}
                 </>
             )}
-        </div>
+        </ContextTourContentStyle>
     );
 };
 
-export default Content;
+export default TourContent;
