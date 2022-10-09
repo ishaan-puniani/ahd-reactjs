@@ -5,6 +5,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import packageJson from './package.json';
 import json from '@rollup/plugin-json';
+import scss from 'rollup-plugin-scss';
 
 export default {
     input: 'src/index.ts',
@@ -23,6 +24,9 @@ export default {
     plugins: [
         cleaner({
             targets: ['./lib'],
+        }),
+        scss({
+            output: 'lib/styles.css',
         }),
         peerDepsExternal(),
         resolve(),
