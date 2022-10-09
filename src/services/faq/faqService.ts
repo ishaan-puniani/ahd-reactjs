@@ -3,8 +3,8 @@ import { IAhdConfig } from '../../components/AhdConfigProvider/AhdConfigContext'
 export default class FaqService {
     static async listAll(
         ahdConfig: IAhdConfig,
-        filter: string,
-        orderBy: string,
+        filter: string | undefined,
+        orderBy: string | undefined,
         limit: number,
         offset: number,
     ): Promise<{ rows: any[]; count: number }> {

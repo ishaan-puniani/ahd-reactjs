@@ -20,7 +20,7 @@ const FAQ: React.FC<IFaqProps> = ({ slug }: IFaqProps) => {
     };
 
     const fetchFAQs = async () => {
-        const response = await FaqService.listAll(ahdConfig, null, null, null, null);
+        const response = await FaqService.listAll(ahdConfig, undefined, undefined, 100, 0);
         setQuestions(response.rows);
         setSearchResults(response.rows);
     };
