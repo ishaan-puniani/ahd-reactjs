@@ -25,7 +25,7 @@ authAxios.interceptors.request.use(
         const token = AuthToken.get();
 
         if (token) {
-            options.headers['Authorization'] = `Bearer ${token}`;
+            // options.headers['Authorization'] = `Bearer ${token}`;
         }
 
         return options;
