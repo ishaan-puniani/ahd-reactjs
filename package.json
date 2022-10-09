@@ -1,6 +1,6 @@
 {
     "name": "@ishaan-puniani/ahd-reactjs",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "A library to provide addon to your react website",
     "main": "lib/index.js",
     "module": "lib/index.esm.js",

@@ -17,7 +17,7 @@ export default class ContextHelpDialogService {
             offset,
         };
 
-        const response = await authAxios.get(`/tenant/${configs.tenantId}/context-help`, {
+        const response = await authAxios.get(`/tenant/${ahdConfig.tenantId}/context-help`, {
             params,
         });
 
