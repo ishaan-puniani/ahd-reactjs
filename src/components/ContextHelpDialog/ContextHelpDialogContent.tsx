@@ -24,7 +24,7 @@ const ContextHelpDialogContent: React.FC<IContextHelpDialogContentProps> = (prop
                             </div>
                             <div className="videos">
                                 {props.content.video.map((vid: any) => (
-                                    <video className="video" autoPlay loop key={vid.id}>
+                                    <video className="video" autoPlay loop key={vid.id} controls>
                                         <source src={vid.publicUrl} />
                                     </video>
                                 ))}

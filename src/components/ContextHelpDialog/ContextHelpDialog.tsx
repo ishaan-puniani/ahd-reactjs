@@ -12,8 +12,9 @@ interface IContextHelpDialogProps {
     slug?: string;
     name?: string;
     topic?: string;
-
     visible?: boolean;
+    width?:string;
+    height?:string;
 }
 
 const ContextHelpDialog: React.FC<IContextHelpDialogProps> = (props: IContextHelpDialogProps) => {
@@ -58,14 +59,14 @@ const ContextHelpDialog: React.FC<IContextHelpDialogProps> = (props: IContextHel
                         closeBox={() => {
                             setVisible(false);
                         }}
-                        modalWidth="60%"
+                        modalWidth={props.width || '60%'}
                         headerBackgroundColor="white"
                         headerTextColor="black"
                         headerHeight="65"
                         closeButtonColor="black"
                         bodyBackgroundColor="white"
                         bodyTextColor="black"
-                        bodyHeight="200px"
+                        bodyHeight={props.height || '200px'}
                         headerText={content.name}
                     >
                         <ContextHelpDialogContent {...content} />

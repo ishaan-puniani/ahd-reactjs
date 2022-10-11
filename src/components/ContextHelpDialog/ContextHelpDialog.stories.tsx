@@ -33,7 +33,7 @@ export default {
 
 const Template: Story = (args) => (
     <>
-        <ContextHelpDialog {...args} />
+        <ContextHelpDialog {...args} visible={true} width='80%' height='400px'/>
         {mockPage}
     </>
 );
